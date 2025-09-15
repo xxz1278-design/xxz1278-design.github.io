@@ -1,0 +1,17 @@
+{
+  "index.qmd": {
+    "index.html": "a51cd582"
+  },
+  "cv/index.qmd": {
+    "index.html": "36c98ae5"
+  },
+  "photography/index.qmd": {
+    "index.html": "d28601de"
+  },
+  "404.qmd": {
+    "404.html": "a9afa255"
+  },
+  "projects/index.qmd": {
+    "index.html": "17dbf256"
+  }
+}
