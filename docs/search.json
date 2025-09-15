@@ -4,14 +4,30 @@
     "href": "cv/index.html",
     "title": "Curriculum vitae",
     "section": "",
-    "text": "Download current CV\n  \n\n\n  \n\n\nView the tutorial for this template (+ download link)"
+    "text": "Download current CV\n  \n\n\n  \n\n\nView the tutorial for this template (+ download link)",
+    "crumbs": [
+      "CV"
+    ]
   },
   {
-    "objectID": "photography/index.html",
-    "href": "photography/index.html",
-    "title": "Photography",
+    "objectID": "education/index.html",
+    "href": "education/index.html",
+    "title": "Experiences",
     "section": "",
-    "text": "Description"
+    "text": "Aug 2024 - May 2025 (expedcted)\nCase Western Reserve University\nCleveland, OH\nMaster of Science in Pathology (GPA: 4.0 in Year 1)\n\nSept 2019 – Jun 2024\nJinan University\nGuangzhou, China\nBachelor of Medicine & Bachelor of Surgery (MBBS, GPA: 3.55)",
+    "crumbs": [
+      "Experiences"
+    ]
+  },
+  {
+    "objectID": "education/index.html#education",
+    "href": "education/index.html#education",
+    "title": "Experiences",
+    "section": "",
+    "text": "Aug 2024 - May 2025 (expedcted)\nCase Western Reserve University\nCleveland, OH\nMaster of Science in Pathology (GPA: 4.0 in Year 1)\n\nSept 2019 – Jun 2024\nJinan University\nGuangzhou, China\nBachelor of Medicine & Bachelor of Surgery (MBBS, GPA: 3.55)",
+    "crumbs": [
+      "Experiences"
+    ]
   },
   {
     "objectID": "projects/index.html",
@@ -19,27 +35,6 @@
     "title": "Projects",
     "section": "",
     "text": "arXiv Preprint | Code\nDescription"
-  },
-  {
-    "objectID": "projects/index.html#heading-1",
-    "href": "projects/index.html#heading-1",
-    "title": "Projects",
-    "section": "",
-    "text": "arXiv Preprint | Code\nDescription"
-  },
-  {
-    "objectID": "projects/index.html#heading-2",
-    "href": "projects/index.html#heading-2",
-    "title": "Projects",
-    "section": "Heading 2",
-    "text": "Heading 2\n\narXiv Preprint | Code\nDescription"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to my website!",
-    "section": "",
-    "text": "Twitter\n  \n  \n    \n     Github\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     Email\n  \n\n\n\n\nWelcome to my website!\nSelf Introduction"
   },
   {
     "objectID": "projects/index.html#project-a",
@@ -54,5 +49,12 @@
     "title": "Projects",
     "section": "Project B",
     "text": "Project B\n\narXiv Preprint | Code\nDescription"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "About",
+    "section": "",
+    "text": "Twitter\n  \n  \n    \n     Github\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     Email\n  \n\n\n\n\nAbout\nHi there! I’m Xinyin, and I’m currently a Master of Science student in Pathology at Case Western Reserve University.\nAfter earning my MBBS degree in China, I came to CWRU to pursue my goal of a pathology residency. My coursework, including Statistical Methods (R), is helping me prepare for this next step. I’ve also had some incredible clinical experiences that have deepened my passion for this field.\nI’m excited to share my work and journey with you. Thanks for stopping by!"
   }
 ]

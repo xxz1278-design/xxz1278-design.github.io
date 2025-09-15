@@ -1,26 +1,27 @@
-# This file controls the settings for your Quarto template from www.marvinschmitt.com
-
 # website settings
 website:
   title: "Xinyin Zhu"                                # Your name
   description: "An international medical graduate interested in pathology."   # A brief slogan (optional)
-  image: img/my_image.jpg
+
+
   
-  favicon: img/favicon.png
-  
-  # start of the navigation bar at the top of the website
-  navbar:
+  sidebar:
     pinned: true
-    logo: /img/logo.png
-    
-    # your sub-pages
-    left:
-      - text: "Projects"
-        href: projects/index.qmd
+    align: center
+    style: "docked"
+    collapse-level: 1
+    contents:
+      - text: "Experiences"
+        href: education/index.qmd
+        
       - text: "Photography"
         href: photography/index.qmd
+        
       - text: "CV"
         href: cv/index.qmd
+#      - text: "Projects"
+#        href: projects/index.qmd
+
     
     # your social media handles
     right:
@@ -31,12 +32,15 @@ website:
         aria-label: email
         href: "xxz1278@case.edu"  
   
+
+
+
   
 
 # Don't touch unless you know what you are doing :) ------------
-  search: 
-    location: navbar
-    type: textbox
+#  search: 
+#    location: navbar
+#    type: textbox
 
 project:
   type: website
@@ -53,13 +57,11 @@ execute:
 
 format:
   html:
+    theme: pulse
+    css: styles.css
     fontsize: 1.1em
-    theme: 
-      - pulse
-      - html/styles.scss
     toc: false
     code-link: true
     anchor-sections: true
     fig-cap-location: margin
-    reference-location: margin
     footnotes-hover: true
