@@ -4,7 +4,7 @@ format:
   dashboard:
     nav-buttons: [github]
     github: https://github.com/mine-cetinkaya-rundel/ld-dashboard
-theme: [sandstone, theme/custom.scss]
+theme: yeti
 fig-width: 10
 fig-asp: 0.3
 editor_options: 
