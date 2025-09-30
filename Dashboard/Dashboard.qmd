@@ -7,7 +7,6 @@ format:
 theme: [sandstone, theme/custom.scss]
 fig-width: 10
 fig-asp: 0.3
-
 editor_options: 
   chunk_output_type: console
 ---
