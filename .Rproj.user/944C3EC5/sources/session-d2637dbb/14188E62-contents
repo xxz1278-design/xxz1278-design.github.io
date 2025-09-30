@@ -1,0 +1,35 @@
+---
+about:
+  template: jolla
+  id: about-block
+  image: "img/my_image.jpg"
+  links:
+    - icon: twitter
+      text: Twitter
+    - icon: github
+      text: Github
+    - icon: linkedin
+      text: LinkedIn
+    - icon: envelope
+      text: Email
+      href: "mailto:xxz1278@case.com"  
+---
+
+::: {#about-block}
+:::
+
+::: {.text-center} 
+# About
+
+Hi there! I'm Xinyin, and I'm currently a Master of Science student in Pathology at Case Western Reserve University.
+
+After earning my MBBS degree in China, I came to CWRU to pursue my goal of a pathology residency. My coursework, including Statistical Methods (R), is helping me prepare for this next step. I've also had some incredible clinical experiences that have deepened my passion for this field.
+
+I'm excited to share my work and journey with you. Thanks for stopping by!
+::: 
+
+```{=html}
+<div  style="margin: 30px; text-align: center;">
+</div>
+```
+
