@@ -46,5 +46,14 @@
   },
   "Blog/index.qmd": {
     "index.html": "8dd53f2d"
+  },
+  "blog/index.qmd": {
+    "index.html": "05e84523"
+  },
+  "dashboard/dashboard.qmd": {
+    "dashboard.html": "cb4671cf"
+  },
+  "dashboard/data.qmd": {
+    "data.html": "c336500d"
   }
 }

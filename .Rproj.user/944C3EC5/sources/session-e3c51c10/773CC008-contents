@@ -1,0 +1,100 @@
+---
+title: "Blog"
+format: html
+output:
+  html_document:
+    css: styles.css
+---
+
+# Baseline Analysis of Cardiometabolic Health Indicators
+
+## I. Purpose and Data Source
+
+This dashboard uses public data from the NHANES (2017–2020) to establish a pre-pandemic cardiometabolic health baseline for the US adult population. The focus is on key indicators: blood pressure (BP), blood glucose, and cholesterol levels (LDL), evaluating their prevalence and inter-relationships.
+
+
+
+
+
+## II. Data Preparation and Processing
+
+### Data Cleaning
+
+I selected data for individuals aged 21 to 80 and calculated the mean of three repeated measurements for both Systolic (SBP) and Diastolic (DBP) pressure, a standard practice to obtain clinically stable BP values from the NHANES data. I integrated the key variables—demographics, BP, LDL, and Fasting Glucose, and then removed any missing values.
+
+### Clinical Risk Categorization
+
+To enable clinically relevant epidemiological analysis, mean blood pressure and LDL level were converted into risk categories based on medical guidelines:
+
+BP Risk Staging: Categorized average BP into Normal, Elevated, Stage 1 Hypertension, and Stage 2 Hypertension.
+
+LDL Risk Staging: Categorized LDL levels into Optimal, Borderline, High Risk, and Very High Risk.
+
+
+
+
+
+## III. Hypotheses and Analyses
+
+
+The analysis was structured into Descriptive Statistics and Correlational Analyses to test specific hypotheses:
+
+### Descriptive Statistics
+
+The purpose is to establish the baseline prevalence of high-risk states in the study population and provide insights for subsequent hypotheses and analyses.
+
+### Hypotheses
+
+A. The proportion of individuals in higher-risk LDL categories increases with age. 
+
+B. There is an association between BP and gender.
+
+C. A positive correlation exists between LDL Cholesterol Level and Mean SBP.
+
+D. A positive correlation exists between Mean SBP and Fasting Glucose.
+
+### Correlational Analyses
+
+The purpose is to explore the strength and direction of associations between different health metrics and demographic factors.
+
+
+
+
+
+
+
+## IV. Key Findings and Conclusions
+
+### Descriptive Findings
+
+High Prevalence: High-risk conditions are common, with **Hypertension at 41.9%** and **High Cholesterol at 25.8%**.
+
+Risk Distribution: Stage 2 Hypertension affects **20.7%** of the cohort, while over **a quarter** of individuals fall into the High Risk or Very High Risk LDL categories.
+
+### Correlational Analysis Findings:
+
+### A. LDL Risk Distribution by Age
+
+The stacked bar chart presents an unexpected, non-linear relationship between age and LDL risk. While Young Adults (21-39) show the lowest Very High Risk prevalence, the data suggests that Middle-Aged Adults (40-59) are the group with the overall least favorable LDL profile, having the lowest proportion in the Optimal (<100) category. Older Adults (60+) surprisingly have the highest proportion of individuals in the Optimal category. I would interpret this as a result of widespread clinical management initiating after middle age — this age group is most likely to be receiving cholesterol medications, which shifts their LDL distribution back toward the optimal range. This highlights a limitation of using raw cross-sectional data without accounting for treatment effects.
+
+### B. Systolic BP Risk Distribution by Gender
+
+Females have a significantly higher prevalence in the Normal BP category compared to males. While the most severe risk (Stage 2 Hypertension) is nearly equal, with a slight edge to males, the male population shows a larger overall representation in the non-optimal risk groups (Elevated, Stage 1, and Stage 2 combined). This indicates that females are generally more likely to maintain optimal blood pressure, while males are more frequently distributed across the various stages of hypertension and pre-hypertension.
+
+### C. LDL vs. Mean SBP
+
+Pearson's r was very low at 0.0682. A minimal association suggests that BP and LDL tend to fluctuate independently in this population.
+
+### D. Mean SBP vs. Fasting Glucose
+
+Pearson's r was 0.1645, indicating a weak-to-moderate positive correlation. This highlights the synergistic risk between elevated blood sugar and blood pressure, often seen in metabolic syndrome.
+
+
+
+
+
+
+## V. Conclusion
+
+This dashboard provides a data-driven understanding of the pre-pandemic cardiometabolic conditions. The key takeaway is the high baseline prevalence of cardiovascular risk factors and the observed synergistic effect between blood pressure and blood glucose.
+
