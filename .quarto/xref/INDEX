@@ -16,5 +16,35 @@
   },
   "education/index.qmd": {
     "index.html": "8c527069"
+  },
+  "panel/Untitled.qmd": {
+    "Untitled.html": "ce1f07e9"
+  },
+  "Dashboard/data.qmd": {
+    "data.html": "830166b8"
+  },
+  "Dashboard/Dashboard.qmd": {
+    "Dashboard.html": "aee4ed9b"
+  },
+  "Dashboard/dashboard.qmd": {
+    "dashboard.html": "99bddea6"
+  },
+  "Dashboard/LICENSE.md": {
+    "LICENSE.html": "5111d1d4"
+  },
+  "Study1/Dashboard.qmd": {
+    "Dashboard.html": "ad38d8de"
+  },
+  "Dashboard sample/LICENSE.md": {
+    "LICENSE.html": "65bdc086"
+  },
+  "Dashboard sample/dashboard.qmd": {
+    "dashboard.html": "4c7e6fd9"
+  },
+  "Dashboard/Dashboard-py.qmd": {
+    "Dashboard-py.html": "3662a4eb"
+  },
+  "Blog/index.qmd": {
+    "index.html": "8dd53f2d"
   }
 }

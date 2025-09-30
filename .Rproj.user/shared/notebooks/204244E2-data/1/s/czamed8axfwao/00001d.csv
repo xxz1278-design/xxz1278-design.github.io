@@ -1,0 +1,5 @@
+"0","#demo_raw <- nhanes('P_DEMO') |> tibble()"
+"0","#print(head(demo_raw))"
+"0","#saveRDS(demo_raw, ""data/P_DEMO.Rds"")"
+"0","demo_raw <- readRDS(""data/P_DEMO.Rds"")"
+"0",""

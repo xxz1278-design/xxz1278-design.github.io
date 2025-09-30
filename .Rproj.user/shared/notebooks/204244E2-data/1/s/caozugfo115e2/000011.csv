@@ -1,0 +1,2 @@
+"0","bs_raw <- nhanes('P_GLU') |> tibble()"
+"0","print(head(bs_raw))"

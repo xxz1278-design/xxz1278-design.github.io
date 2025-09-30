@@ -1,0 +1,414 @@
+---
+title: "Cardiometabolic Health Analysis, 2017-2020 Baseline"
+format: 
+  dashboard:
+    nav-buttons: [github]
+    github: https://github.com/mine-cetinkaya-rundel/ld-dashboard
+theme: [sandstone, theme/custom.scss]
+fig-width: 10
+fig-asp: 0.3
+
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: load-packages
+#| message: false
+
+library(tidyverse)
+library(readxl)
+library(scales)
+library(DT)
+library(gt)
+library(kableExtra)
+theme_set(theme_minimal(base_size = 24, base_family = "sans"))
+final_data <- readRDS("data/final_variables.rds") 
+```
+
+
+#  {.sidebar}
+
+Pre-Pandemic Baseline Risk Assessment: Blood Pressure, LDL-Cholesterol and Blood Sugar
+
+|              |                     |
+|--------------|---------------------|
+| **Source** | NHANES |
+| **Date Range**     | 2017 - 2020  |
+
+
+# Descriptive Statistics 
+
+## Row {height="20%"}
+```{r}
+n_subjects <- nrow(final_data)
+p_hypertension <- final_data %>%
+  filter(BP_Category %in% c("3. Stage 1 Hypertension (130-139 or 80-89)", 
+                            "4. Stage 2 Hypertension (>=140 or >=90)")) %>%
+  nrow() / n_subjects
+
+p_high_cholesterol <- final_data %>%
+  filter(LDL_Category %in% c("3. High Risk (130-159)", 
+                              "4. Very High Risk (>=160)")) %>%
+  nrow() / n_subjects
+```
+
+```{r}
+#| content: valuebox
+#| title: "Total Subjects"
+
+list(
+  icon = "file-medical",
+  color = "primary",
+  value = n_subjects
+)
+```
+
+```{r}
+#| content: valuebox
+#| title: "Hypertension Prevalence"
+
+list(
+  icon = "clipboard2-pulse",
+  color = p_hypertension,
+  value = label_percent(accuracy = 0.1)(p_hypertension)
+)
+```
+
+```{r}
+#| content: valuebox
+#| title: "High Cholesterol Prevalence "
+
+list(
+  icon = "calendar-week",
+  color = p_high_cholesterol,
+  value = label_percent(accuracy = 0.1)(p_high_cholesterol)
+)
+```
+
+
+
+## Row {height="40%"}
+
+### Column {width="58%"}
+
+```{r}
+#| title: BP Risk Staging
+
+final_data%>%
+  count(BP_Category) %>%
+  
+  mutate(p = n / sum(n)) %>%
+  
+  gt() %>%
+  
+  fmt_percent(
+    columns = p,
+    decimals = 1
+  ) %>%
+  
+
+  tab_style(
+    style = cell_text( color = "#dc3545", weight = "bold"), 
+    locations = cells_body(
+      columns = everything(),
+      rows = BP_Category == "4. Stage 2 Hypertension (>=140 or >=90)"
+    )
+  ) %>%
+  
+  tab_style(
+    style = cell_text( color = "#fd7e14", weight = "bold"),
+    locations = cells_body(
+      columns = everything(),
+      rows = BP_Category == "3. Stage 1 Hypertension (130-139 or 80-89)"
+    )
+  ) %>%
+  
+    tab_style(
+    style = cell_text( color = "#ffc107", weight = "bold"),
+    locations = cells_body(
+      columns = everything(),
+      rows = BP_Category == "2. Elevated (120-129 and <80)"
+    )
+  ) %>%
+  
+  cols_label(
+    BP_Category = "BP Category", 
+    n = "Number",             
+    p = "Percentage",           
+    .fn = md
+  )
+```
+
+
+
+### Column {width="42%"}
+
+```{r}
+#| title: LDL Risk Staging
+
+
+final_data %>%
+  count(LDL_Category) %>%
+
+  mutate(p = n / sum(n)) %>%
+
+  gt() %>%
+  
+  fmt_percent(
+    columns = p,
+    decimals = 1
+  ) %>%
+
+  tab_style(
+    style = cell_text(color = "#dc3545", weight = "bold"),
+    locations = cells_body(
+      columns = everything(),
+      rows = LDL_Category == "4. Very High Risk (>=160)"
+    )
+  ) %>%
+
+  tab_style(
+    style = cell_text(color = "#fd7e14", weight = "bold"),
+    locations = cells_body(
+      columns = everything(),
+      rows = LDL_Category == "3. High Risk (130-159)"
+    )
+  ) %>%
+  
+  tab_style(
+    style = cell_text(color = "#ffc107", weight = "bold"),
+    locations = cells_body(
+      columns = everything(),
+      rows = LDL_Category == "2. Borderline (100-129)"
+    )
+  ) %>%
+  
+  cols_label(
+    LDL_Category = "LDL Category",
+    n = "Number",
+    p = "Percentage",
+    .fn = md
+  )
+```
+
+## Row {height="40%"}
+
+```{r}
+#| title: Age Distribution
+
+final_data %>%
+  ggplot(aes(x = Age)) +
+  geom_density(
+    linewidth = 1.5, 
+    color = "#0e2635", 
+    fill = "#3a6d8c", 
+    alpha = 0.5
+  ) +
+  
+  stat_function(
+    fun = dnorm, 
+    args = list(mean = mean(final_data$Age), 
+                sd = sd(final_data$Age)),
+    color = "#dc3545", 
+    linewidth = 1
+  ) +
+  
+  labs(
+    x = "Age (Years)",
+    y = "Density",
+    caption = "Red line represents theoretical normal distribution"
+  ) +
+  theme_minimal(base_size = 14) +
+  
+  coord_cartesian(expand = FALSE)
+```
+
+
+# Analyses
+## Row {height="50%"}
+### Column {width="50%"}
+```{r}
+#| title: LDL Risk Distribution by Age
+final_data <- final_data %>%
+  mutate(
+    Age_Category = case_when(
+      Age >= 60                   ~ "3. Older Adults (60+)",
+      Age >= 40 & Age < 60        ~ "2. Middle-Aged (40-59)",
+      Age >= 21 & Age < 40        ~ "1. Young Adults (21-39)",
+      TRUE                        ~ NA_character_ 
+    )
+  ) %>%
+  mutate(
+    Age_Category = factor(Age_Category, levels = c(
+      "1. Young Adults (21-39)",
+      "2. Middle-Aged (40-59)",
+      "3. Older Adults (60+)"
+    ))
+  )
+
+
+#| title: Cholesterol Risk Distribution by Age Group
+
+final_data %>%
+  count(Age_Category, LDL_Category) %>%
+  ggplot(aes(x = n, y = fct_rev(Age_Category), fill = LDL_Category)) +
+  geom_col(position = "fill", color = "white") +
+  scale_fill_manual(
+    values = c(
+      "1. Optimal (<100)" = "#3a6d8c",        
+      "2. Borderline (100-129)" = "#7c93a0",    
+      "3. High Risk (130-159)" = "#ffc107",    
+      "4. Very High Risk (>=160)" = "#dc3545"  
+    ),
+    guide = guide_legend(reverse = TRUE, title = "LDL Category")
+  ) +
+  scale_x_continuous(labels = label_percent(), expand = c(0, 0)) +
+  labs(
+    y = NULL,                    
+    x = "Proportion",             
+    fill = "LDL Category"        
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "right",
+    panel.grid.major.y = element_blank()
+  )
+```
+
+
+### Column {width="50%"}
+```{r}
+#| title: Systolic BP Risk Distribution by Gender
+
+final_data %>%
+  count(Gender, BP_Category) %>%
+  ggplot(aes(x = n, y = fct_rev(Gender), fill = BP_Category)) +
+  geom_col(position = "fill", color = "white") +
+  scale_fill_manual(
+    values = c(
+      "1. Normal (<120 and <80)" = "#3a6d8c",             
+      "2. Elevated (120-129 and <80)" = "#a9a9a9",        
+      "3. Stage 1 Hypertension (130-139 or 80-89)" = "#ffc107", 
+      "4. Stage 2 Hypertension (>=140 or >=90)" = "#dc3545"     
+    ),
+    guide = guide_legend(reverse = TRUE, title = "BP Category")
+  ) +
+  scale_x_continuous(labels = label_percent(), expand = c(0, 0)) +
+  
+  labs(
+    y = NULL,
+    x = "Proportion",
+    fill = "BP Category"
+  ) +
+
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "right",
+  )
+```
+## Row {height="50%"}
+### Column {width="50%"}
+```{r}
+#| title: LDL Cholesterol Level vs. Mean SBP
+
+#| fig-asp: 0.75
+
+
+
+final_data %>%
+ ggplot(aes(x = Mean_SBP, y = LDL_Cholesterol)) +
+ geom_point(alpha = 0.3, color = "#0e2635") +
+ geom_smooth(
+ method = "lm",
+ color = "#dc3545",
+ fill = "#ffc107",
+ linewidth = 1.5
+ ) +
+ labs(
+ x = "Mean Systolic Blood Pressure (mmHg)",
+ y = "LDL Cholesterol (mg/dL)"
+ ) +
+ theme_minimal(base_size = 14)
+
+cor_result_90 <- cor.test(final_data$LDL_Cholesterol, 
+                          final_data$Mean_SBP, 
+                          method = "pearson",
+                          conf.level = 0.90) 
+
+
+r_coefficient <- round(cor_result_90$estimate, 4)
+p_value <- cor_result_90$p.value
+df_value <- cor_result_90$parameter
+ci_low <- round(cor_result_90$conf.int[1], 4)
+ci_high <- round(cor_result_90$conf.int[2], 4)
+
+
+correlation_report_tbl <- tibble(
+  Statistic = c("Pearson's r", "90% CI", "Degrees of Freedom (df)", "P-value"),
+  Value = c(
+    as.character(r_coefficient),
+    paste0("[", ci_low, ", ", ci_high, "]"),
+    as.character(df_value),
+    format.pval(p_value, digits = 4) 
+  )
+)
+
+correlation_report_tbl %>%
+  knitr::kable(
+    col.names = c("Statistic", "Value"),
+    caption = "Pearson Correlation between LDL Cholesterol and Mean SBP"
+  ) 
+```
+### Column {width="50%"}
+```{r}
+#| title: Mean SBP vs. Fasting Glucose
+
+#| fig-asp: 0.75
+
+
+final_data %>%
+ ggplot(aes(x = Fasting_Glucose, y = Mean_SBP)) +
+ geom_point(alpha = 0.3, color = "#0e2635") +
+ geom_smooth(
+ method = "lm",
+ color = "#dc3545",
+ fill = "#ffc107",
+ linewidth = 1.5
+ ) +
+ labs(
+ x = "Fasting_Glucose (mg/dL)",
+ y = "Mean Systolic Blood Pressure (mmHg)"
+ ) +
+ theme_minimal(base_size = 14)
+
+cor_result_90 <- cor.test(final_data$Fasting_Glucose, 
+                          final_data$Mean_SBP, 
+                          method = "pearson",
+                          conf.level = 0.90) 
+
+
+r_coefficient <- round(cor_result_90$estimate, 4)
+p_value <- cor_result_90$p.value
+df_value <- cor_result_90$parameter
+ci_low <- round(cor_result_90$conf.int[1], 4)
+ci_high <- round(cor_result_90$conf.int[2], 4)
+
+
+correlation_report_tbl <- tibble(
+  Statistic = c("Pearson's r", "90% CI", "Degrees of Freedom (df)", "P-value"),
+  Value = c(
+    as.character(r_coefficient),
+    paste0("[", ci_low, ", ", ci_high, "]"),
+    as.character(df_value),
+    format.pval(p_value, digits = 4) 
+  )
+)
+
+correlation_report_tbl %>%
+  knitr::kable(
+    col.names = c("Statistic", "Value"),
+    caption = "Pearson Correlation between Mean SBP and Fasting Glucose"
+  ) 
+
+```

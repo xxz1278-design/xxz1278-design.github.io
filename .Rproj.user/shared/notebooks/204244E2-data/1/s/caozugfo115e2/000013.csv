@@ -1,0 +1,2 @@
+"0","saveRDS(bs_raw, ""data/P_GLU.Rds"")"
+"0","bs_raw <- readRDS(""data/P_GLU.Rds"")"

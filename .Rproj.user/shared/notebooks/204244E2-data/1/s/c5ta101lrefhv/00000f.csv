@@ -1,0 +1,2 @@
+"0","chol_raw <- nhanes('P_TRIGLY') |> tibble()"
+"0","print(head(chol_raw))"

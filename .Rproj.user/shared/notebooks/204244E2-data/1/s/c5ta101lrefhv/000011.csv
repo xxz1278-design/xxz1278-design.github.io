@@ -1,0 +1,2 @@
+"0","saveRDS(chol_raw, ""data/P_TRIGLY.Rds"")"
+"0","chol_raw <- readRDS(""data/P_TRIGLY.Rds"")"

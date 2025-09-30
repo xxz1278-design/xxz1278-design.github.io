@@ -1,0 +1,2 @@
+"0","#a_raw <- nhanes('P_PAQ') |> tibble()"
+"0","print(head(pa_raw))"
