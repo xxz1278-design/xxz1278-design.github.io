@@ -11,6 +11,9 @@ website:
     style: "docked"
     collapse-level: 1
     contents:
+      - text: "About"
+        href: index.qmd
+    
       - text: "Experiences"
         href: education/index.qmd
         
@@ -21,13 +24,11 @@ website:
         href: cv/index.qmd
         
       - text: "Dashboard"
-        href: dashboard/dashboard.html   
+        href: dashboard/dashboard.qmd   
         
       - text: "Blog"
         href: blog/index.qmd
         
-#      - text: "Projects"
-#        href: projects/index.qmd
 
     
     # your social media handles
