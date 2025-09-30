@@ -24,7 +24,7 @@ website:
         href: Dashboard/Dashboard.html   
         
       - text: "Blog"
-        href: blog/index.html
+        href: blog/index.qmd
         
 #      - text: "Projects"
 #        href: projects/index.qmd
