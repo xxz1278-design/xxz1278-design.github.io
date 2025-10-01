@@ -24,7 +24,7 @@ website:
         href: cv/index.qmd
         
       - text: "Dashboard"
-        href: dashboard/dashboard.qmd   
+        href: dashboard/dashboard.html 
         
       - text: "Blog"
         href: blog/index.qmd
