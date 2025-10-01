@@ -76,11 +76,21 @@ saveRDS(clean_data_adults, "data/clean_adult_data.Rds")
 
 ```{R, BP}
 # Calculate mean SBP/DBP and BP level
-final_data <- clean_data_adults %>%
-   mutate(
-    Mean_SBP = rowMeans(select(., BPXOSY1, BPXOSY2, BPXOSY3), na.rm = TRUE),
-    Mean_DBP = rowMeans(select(., BPXODI1, BPXODI2, BPXODI3), na.rm = TRUE) )%>%
-  
+final_data <- clean_data_adults
+final_data$Mean_SBP <- base::rowMeans(
+    clean_data_adults[, c("BPXOSY1", "BPXOSY2", "BPXOSY3")], 
+    na.rm = TRUE
+)
+final_data$Mean_DBP <- base::rowMeans(
+    clean_data_adults[, c("BPXODI1", "BPXODI2", "BPXODI3")], 
+    na.rm = TRUE
+)
+final_data$Mean_SBP <- round(final_data$Mean_SBP, 0)
+final_data$Mean_DBP <- round(final_data$Mean_DBP, 0)
+
+
+     
+final_data <- final_data %>%
   mutate(
     BP_Category = case_when(
       (Mean_SBP >= 140) | (Mean_DBP >= 90) ~ "4. Stage 2 Hypertension (>=140 or >=90)",
@@ -98,6 +108,7 @@ final_data <- clean_data_adults %>%
       "4. Stage 2 Hypertension (>=140 or >=90)"
     ))
   )
+
 
 print(table(final_data$BP_Category, useNA = "ifany"))
 
@@ -131,7 +142,7 @@ saveRDS(final_data, "data/final_data.Rds")
 final_data <- readRDS("data/final_data.Rds") %>%
   select(
     #Demo
-    SEQN,
+    ID = SEQN,
     RIDSTATR,
     Age = RIDAGEYR,
     Gender = RIAGENDR,
@@ -139,17 +150,12 @@ final_data <- readRDS("data/final_data.Rds") %>%
     Mean_SBP, 
     Mean_DBP,
     BP_Category,
-    Sedentary_Mins = PAD680,
     LDL_Cholesterol = LBDLDL,
     LDL_Category,
     Triglycerides = LBXTR,
     Fasting_Glucose = LBXGLU
   )%>%
-  #converting na
-  mutate(
-    Sedentary_Mins = na_if(Sedentary_Mins, 7777),
-    Sedentary_Mins = na_if(Sedentary_Mins, 9999)
-  )%>%
+
   drop_na() 
 
 final_n <- nrow(final_data)

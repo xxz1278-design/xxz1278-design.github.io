@@ -411,3 +411,16 @@ correlation_report_tbl %>%
   ) 
 
 ```
+
+
+# Data
+```{r}
+final_data |>
+  select(ID, Age, Gender, Mean_SBP, Mean_DBP, BP_Category, LDL_Cholesterol, LDL_Category,  Fasting_Glucose) |>
+  datatable(
+    colnames = c("ID", "Age", "Gender", "Mean_SBP", "Mean_DBP", "BP_Category", "LDL_Cholesterol", "LDL_Category", "Fasting_Glucose"),
+    options = list(dom = 'ftp', paging = TRUE)
+    )
+```
+
+
