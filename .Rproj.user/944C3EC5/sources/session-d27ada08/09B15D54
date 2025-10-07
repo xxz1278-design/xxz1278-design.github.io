@@ -3,7 +3,7 @@
     "path": "~/Desktop/xxz1278-design.github.io/_quarto.yml",
     "project_path": "_quarto.yml",
     "type": "yaml",
-    "hash": "1808217230",
+    "hash": "3882744937",
     "contents": "",
     "dirty": false,
     "created": 1757956760543.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "26,37",
-        "scrollLine": "0"
+        "cursorPosition": "73,19",
+        "scrollLine": "41"
     },
     "folds": "",
-    "lastKnownWriteTime": 1759204074,
+    "lastKnownWriteTime": 1759864358,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1759204074223,
+    "last_content_update": 1759864358161,
     "read_only": false,
     "read_only_alternatives": []
 }

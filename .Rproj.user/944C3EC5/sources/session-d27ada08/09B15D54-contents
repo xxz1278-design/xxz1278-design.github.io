@@ -1,4 +1,14 @@
-# website settings
+project:
+  type: website
+  output-dir: docs
+
+  preview: 
+    port: 8080
+    browser: true
+    watch-inputs: true
+    navigate: true
+
+
 website:
   title: "Xinyin Zhu"                                # Your name
   description: "An international medical graduate interested in pathology."   # A brief slogan (optional)
@@ -24,7 +34,7 @@ website:
         href: cv/index.qmd
         
       - text: "Dashboard"
-        href: dashboard/dashboard.qmd   
+        href: dashboard/dashboard.qmd
         
       - text: "Blog"
         href: blog/index.qmd
@@ -50,15 +60,6 @@ website:
 #    location: navbar
 #    type: textbox
 
-project:
-  type: website
-  output-dir: docs
-
-  preview: 
-    port: 8080
-    browser: true
-    watch-inputs: true
-    navigate: true
 
 execute:
   freeze: true
@@ -67,6 +68,7 @@ format:
   html:
     theme: pulse
     css: styles.css
+    html-path-prefix: / 
     fontsize: 1.1em
     toc: false
     code-link: true
